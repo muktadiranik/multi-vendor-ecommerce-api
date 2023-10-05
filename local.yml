@@ -1,0 +1,79 @@
+version: "3"
+
+volumes:
+  govelo_local_postgres_data: {}
+  govelo_local_postgres_data_backups: {}
+
+services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: govelo_local_django
+    container_name: govelo_local_django
+    depends_on:
+      - postgres
+      - redis
+      - mailhog
+    volumes:
+      - .:/app:z
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+    # command: daphne config.asgi:application -b 0.0.0.0 -p 8000
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: govelo_production_postgres
+    container_name: govelo_local_postgres
+    volumes:
+      - govelo_local_postgres_data:/var/lib/postgresql/data
+      - govelo_local_postgres_data_backups:/backups
+    env_file:
+      - ./.envs/.local/.postgres
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    container_name: govelo_local_mailhog
+    ports:
+      - "8025:8025"
+
+  redis:
+    image: redis:6
+    command: redis-server --requirepass password
+    container_name: govelo_local_redis
+
+  # celeryworker:
+  #   <<: *django
+  #   image: govelo_local_celeryworker
+  #   container_name: govelo_local_celeryworker
+  #   depends_on:
+  #     - redis
+  #     - postgres
+  #     - mailhog
+  #   ports: []
+  #   command: /start-celeryworker
+
+  # celerybeat:
+  #   <<: *django
+  #   image: govelo_local_celerybeat
+  #   container_name: govelo_local_celerybeat
+  #   depends_on:
+  #     - redis
+  #     - postgres
+  #     - mailhog
+  #   ports: []
+  #   command: /start-celerybeat
+
+  # flower:
+  #   <<: *django
+  #   image: govelo_local_flower
+  #   container_name: govelo_local_flower
+  #   ports:
+  #     - "5555:5555"
+  #   command: /start-flower

@@ -1,0 +1,26 @@
+---
+- name: Ensure the Supervisor service is running
+  service:
+      name: supervisor
+      state: started
+      enabled: yes
+      # TODO: This is likely due to a bug in Ansible.
+      # Remove this line in the future.
+      # See https://github.com/ansible/ansible/issues/75005
+      use: sysvinit
+
+- name: Create the Supervisor config file for gunicorn
+  template: src=supervisor_gunicorn.j2
+      dest=/etc/supervisor/conf.d/{{ application_name }}_gunicorn.conf
+      backup=yes
+
+- name: Create the Supervisor config file for daphne
+  template: src=supervisor_daphne.j2
+      dest=/etc/supervisor/conf.d/{{ application_name }}_daphne.conf
+      backup=yes
+
+- name: Re-read the Supervisor config file for gunicorn
+  supervisorctl: name={{ backend_project_name }}_gunicorn state=present
+
+- name: Re-read the Supervisor config file for daphne
+  supervisorctl: name={{ backend_project_name }}_daphne state=present

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+NAME="{{ backend_project_name }}"
+DJANGODIR="{{ backend_project_path }}"
+SOCKFILE={{ virtualenv_path }}/run/daphne.sock
+USER={{ gunicorn_user }}
+GROUP={{ gunicorn_group }}
+
+echo "Starting $NAME as `whoami`"
+
+# Activate the virtual environment.
+cd $DJANGODIR
+. {{ virtualenv_path }}/bin/activate
+
+# Set additional environment variables.
+. {{ virtualenv_path }}/bin/postactivate
+
+# Create the run directory if it doesn't exist.
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+# Programs meant to be run under supervisor should not daemonize themselves
+# (do not use --daemon).
+exec daphne \
+    -t {{ gunicorn_timeout_seconds|default(30) }} \
+    -u $SOCKFILE \
+    --access-log - \
+    --fd 0 \
+    --proxy-headers \
+    config.asgi:application

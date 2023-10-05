@@ -1,0 +1,9 @@
+[fcgi-program:{{ backend_project_name }}_daphne]
+socket = tcp://127.0.0.1:8000
+command = {{ virtualenv_path }}/bin/daphne_start
+user = {{ gunicorn_user }}
+stdout_logfile = {{ application_log_file2 }}
+redirect_stderr = true
+# Automatically start and recover processes
+autostart=true
+autorestart=true

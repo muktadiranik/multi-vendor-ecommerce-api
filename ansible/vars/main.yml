@@ -1,0 +1,46 @@
+deploy_frontend: false
+deploy_backend: true
+
+application_name: go_velo
+frontend_project_name: frontend
+backend_project_name: govelo
+db_name: go_velo
+db_user: go_velo
+db_password: go_velo
+
+postgresql_version: 15
+postgresql_databases:
+  - name: "{{ db_name }}"
+    # state: "absent"
+postgresql_users:
+  # - name: "{{ secret_db_user }}"
+  - name: "{{ db_user }}"
+    password: "{{ db_password }}"
+
+update_apt_cache: true
+
+ansistrano_deploy_to: "/var/www/go_velo"
+ansistrano_version_dir: "releases"
+ansistrano_current_dir: "current"
+ansistrano_current_via: "symlink"
+ansistrano_keep_releases: 1
+ansistrano_deploy_via: git
+ansistrano_git_repo: https://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@github.com/hudacse6/go-velo-api.git
+ansistrano_git_branch: main
+
+# Certbot for SSL
+certbot_create_if_missing: true
+certbot_admin_email: eliyas@devxhub.com
+
+# Redis
+redis_port: 6379
+redis_bind_interface: 127.0.0.1
+redis_requirepass: "JE86vlSE4xLGIJNDGd66LoAvdfNzvJV7rzUvjik3"
+
+# Nodejs
+fnm_root_suffix: ".fnm"
+fnm_nodejs_versions:
+  - v18.12.0
+fnm_npm_global_packages:
+  - name: yarn
+  - name: pm2

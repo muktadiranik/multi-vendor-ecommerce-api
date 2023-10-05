@@ -1,0 +1,371 @@
+[
+  {
+    "model": "core.ReportType",
+    "pk": 1,
+    "fields": {
+      "name": "Report a bug"
+    }
+  },
+  {
+    "model": "core.ReportType",
+    "pk": 2,
+    "fields": {
+      "name": "Report an error"
+    }
+  },
+  {
+    "model": "core.ReportType",
+    "pk": 3,
+    "fields": {
+      "name": "Report a typo"
+    }
+  },
+  {
+    "model": "core.ReportType",
+    "pk": 4,
+    "fields": {
+      "name": "Report a misprint"
+    }
+  },
+  {
+    "model": "core.ReportType",
+    "pk": 5,
+    "fields": {
+      "name": "Report a missing image"
+    }
+  },
+  {
+    "model": "core.ReportType",
+    "pk": 6,
+    "fields": {
+      "name": "Report a missing link"
+    }
+  },
+  {
+    "model": "core.ReportType",
+    "pk": 7,
+    "fields": {
+      "name": "Report a missing contact"
+    }
+  },
+  {
+    "model": "core.ReportType",
+    "pk": 8,
+    "fields": {
+      "name": "Report a missing address"
+    }
+  },
+  {
+    "model": "core.ReportType",
+    "pk": 9,
+    "fields": {
+      "name": "Report a missing phone number"
+    }
+  },
+  {
+    "model": "core.ReportType",
+    "pk": 10,
+    "fields": {
+      "name": "Report a missing email"
+    }
+  },
+  {
+    "model": "core.ReportType",
+    "pk": 11,
+    "fields": {
+      "name": "Report a missing price"
+    }
+  },
+  {
+    "model": "core.ReportType",
+    "pk": 12,
+    "fields": {
+      "name": "Report a missing description"
+    }
+  },
+  {
+    "model": "core.ReportType",
+    "pk": 13,
+    "fields": {
+      "name": "Report a missing category"
+    }
+  },
+  {
+    "model": "setup.Currency",
+    "pk": 1,
+    "fields": {
+      "name": "Dollar",
+      "code": "$",
+      "symbol": "USD"
+    }
+  },
+  {
+    "model": "setup.Currency",
+    "pk": 2,
+    "fields": {
+      "name": "Euro",
+      "code": "€",
+      "symbol": "EUR"
+    }
+  },
+  {
+    "model": "setup.NominationType",
+    "pk": 1,
+    "fields": {
+      "name": "Nominate a person"
+    }
+  },
+  {
+    "model": "setup.NominationType",
+    "pk": 2,
+    "fields": {
+      "name": "Nominate a product"
+    }
+  },
+  {
+    "model": "setup.NominationType",
+    "pk": 3,
+    "fields": {
+      "name": "Nominate a service"
+    }
+  },
+  {
+    "model": "setup.NominationType",
+    "pk": 4,
+    "fields": {
+      "name": "Nominate a brand"
+    }
+  },
+  {
+    "model": "setup.NominationType",
+    "pk": 5,
+    "fields": {
+      "name": "Nominate an event"
+    }
+  },
+  {
+    "model": "setup.AddressType",
+    "pk": 1,
+    "fields": {
+      "name": "Shipping"
+    }
+  },
+  {
+    "model": "setup.AddressType",
+    "pk": 2,
+    "fields": {
+      "name": "Billing"
+    }
+  },
+  {
+    "model": "setup.AddressType",
+    "pk": 3,
+    "fields": {
+      "name": "Mailing"
+    }
+  },
+  {
+    "model": "setup.AddressType",
+    "pk": 4,
+    "fields": {
+      "name": "Office"
+    }
+  },
+  {
+    "model": "setup.AddressType",
+    "pk": 5,
+    "fields": {
+      "name": "Pickup"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 1,
+    "fields": {
+      "name": "Mountain Bike"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 1,
+    "fields": {
+      "name": "BMX Bike"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 3,
+    "fields": {
+      "name": "Road Bike"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 4,
+    "fields": {
+      "name": "Hybrid Bike"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 5,
+    "fields": {
+      "name": "Comfort Bike"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 6,
+    "fields": {
+      "name": "Cruiser Bike"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 7,
+    "fields": {
+      "name": "Tandem Bike"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 8,
+    "fields": {
+      "name": "Recumbent Bike"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 9,
+    "fields": {
+      "name": "Folding Bike"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 10,
+    "fields": {
+      "name": "Electric Bike"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 11,
+    "fields": {
+      "name": "Cargo Bike"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 12,
+    "fields": {
+      "name": "City Bike"
+    }
+  },
+  {
+    "model": "setup.ProductType",
+    "pk": 13,
+    "fields": {
+      "name": "Touring Bike"
+    }
+  },
+  {
+    "model": "setup.ProductRateType",
+    "pk": 1,
+    "fields": {
+      "name": "Daily"
+    }
+  },
+  {
+    "model": "setup.ContactType",
+    "pk": 1,
+    "fields": {
+      "name": "Feedback"
+    }
+  },
+  {
+    "model": "setup.ContactType",
+    "pk": 2,
+    "fields": {
+      "name": "Complaints"
+    }
+  },
+  {
+    "model": "setup.ContactType",
+    "pk": 3,
+    "fields": {
+      "name": "Suggestions"
+    }
+  },
+  {
+    "model": "setup.ContactType",
+    "pk": 4,
+    "fields": {
+      "name": "Other"
+    }
+  },
+  {
+    "model": "products.ProductSize",
+    "pk": 1,
+    "fields": {
+      "product_size": "13 – 15 inches = X-Small",
+      "created_at": "2018-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.ProductSize",
+    "pk": 2,
+    "fields": {
+      "product_size": "15 – 17 inches = Small",
+      "created_at": "2018-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.ProductSize",
+    "pk": 3,
+    "fields": {
+      "product_size": "17 – 19 inches = Medium",
+      "created_at": "2018-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.ProductSize",
+    "pk": 4,
+    "fields": {
+      "product_size": "19 – 21 inches = Large",
+      "created_at": "2018-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.ProductSize",
+    "pk": 5,
+    "fields": {
+      "product_size": "21 – 23 inches = X-Large",
+      "created_at": "2018-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.ProductSize",
+    "pk": 6,
+    "fields": {
+      "product_size": "23 – 25 inches = XX-Large",
+      "created_at": "2018-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.ProductSize",
+    "pk": 7,
+    "fields": {
+      "product_size": "25 – 27 inches = XXX-Large",
+      "created_at": "2018-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.ProductSize",
+    "pk": 8,
+    "fields": {
+      "product_size": "27 – 29 inches = XXXX-Large",
+      "created_at": "2018-01-01T00:00:00Z"
+    }
+  }
+]

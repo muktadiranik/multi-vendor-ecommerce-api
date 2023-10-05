@@ -1,0 +1,100 @@
+---
+- name: Install virtualenv
+  become: false
+  pip:
+    name: virtualenv
+    version: latest
+  tags: packages
+
+- name: Check if Supervisor exists
+  stat: path=/etc/init.d/supervisor
+  register: supervisor_status
+  when: recreate_virtualenv
+
+- name: Ensure all processes managed by Supervisor are stopped if exists
+  command: supervisorctl stop {{ backend_project_name }}_gunicorn {{ backend_project_name }}_daphne
+  when: recreate_virtualenv and supervisor_status.stat.exists
+
+- name: Ensure no existing virtualenv exists
+  file:
+    state: absent
+    path: "{{ virtualenv_path }}/"
+  when: recreate_virtualenv
+
+- name: Create the virtualenv
+  become: false
+  pip:
+    requirements: "{{ requirements_file }}"
+    virtualenv_python: python3
+    virtualenv: "{{ virtualenv_path }}"
+  environment:
+    SETUPTOOLS_USE_DISTUTILS: stdlib
+
+- name: Create the Gunicorn script file
+  template: src=gunicorn.j2
+    dest={{ virtualenv_path }}/bin/gunicorn_start
+    owner={{ ansible_user }}
+    group="www-data"
+    mode=0755
+    backup=yes
+  tags: deploy
+
+- name: Create the Daphne script file
+  template: src=daphne.j2
+      dest={{ virtualenv_path }}/bin/daphne_start
+      owner={{ ansible_user }}
+      group=www-data
+      mode=0755
+      backup=yes
+  tags: deploy
+
+- name: Create the application log folder
+  file: path={{ application_log_dir }}
+    owner={{ ansible_user }}
+    group=www-data
+    mode=0774
+    state=directory
+
+- name: Check for an existing gunicorn logfile
+  stat:
+      path: "{{ application_log_file1 }}"
+  register: p1
+
+- name: Check for an existing daphne logfile
+  stat:
+      path: "{{ application_log_file2 }}"
+  register: p2
+
+- name: Create (or retain) the gunicorn log file
+  file:
+      path: "{{ application_log_file1 }}"
+      owner: "{{ ansible_user }}"
+      group: "www-data"
+      mode: 0664
+      state: '{{ "file" if  p1.stat.exists else "touch" }}'
+
+- name: Create (or retain) the daphne log file
+  file:
+      path: "{{ application_log_file2 }}"
+      owner: "{{ ansible_user }}"
+      group: "www-data"
+      mode: 0664
+      state: '{{ "file" if  p2.stat.exists else "touch" }}'
+
+- name: Create the virtualenv postactivate script to set environment variables
+  template: src=virtualenv_postactivate.j2
+    dest={{ virtualenv_path }}/bin/postactivate
+    owner={{ ansible_user }}
+    group=www-data
+    mode=0640
+    backup=yes
+  notify:
+    - restart gunicorn
+    - restart daphne
+  tags: deploy
+
+- name: Create the maintenance page
+  become: false
+  template: src=maintenance_off.html
+    dest={{ virtualenv_path }}/maintenance_off.html
+    mode=0664

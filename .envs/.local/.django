@@ -1,0 +1,36 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER = yes
+IPYTHONDIR = /app/.ipython
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL = redis: // redis: 6379/0
+REDIS_HOST = redis
+REDIS_PASSWORD = password
+
+# Celery
+# ------------------------------------------------------------------------------
+
+# Flower
+CELERY_FLOWER_USER = debug
+CELERY_FLOWER_PASSWORD = debug
+
+# CORS
+TRUSTED_CORS_ORIGINS = "https://go-velo.devxhub.com,https://go-velo-api.devxhub.com,http://localhost,capacitor://localhost,http://localhost:3000,http://localhost:8000"
+
+# Email
+DJANGO_EMAIL_BACKEND = django.core.mail.backends.smtp.EmailBackend
+DEFAULT_FROM_EMAIL = default@email.com
+EMAIL_HOST = smtp.mailtrap.io
+EMAIL_HOST_USER = 8a5bffc7cdbaa8
+EMAIL_HOST_PASSWORD = b972788e51846b
+EMAIL_PORT = 2525
+FRONTEND_URL = http://localhost:3000
+EMAIL_USE_TLS = True
+
+
+# Social Auth
+# ------------------------------------------------------------------------------
+
+FACEBOOK_CALLBACK_URL = http://localhost:3000/auth/social/facebook
+GOOGLE_CALLBACK_URL = http://localhost:3000/auth/social/google

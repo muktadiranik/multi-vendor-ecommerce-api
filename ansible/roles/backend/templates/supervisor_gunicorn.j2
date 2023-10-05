@@ -1,0 +1,8 @@
+[program:{{ backend_project_name }}_gunicorn]
+command = {{ virtualenv_path }}/bin/gunicorn_start
+user = {{ gunicorn_user }}
+stdout_logfile = {{ application_log_file1 }}
+redirect_stderr = true
+# Automatically start and recover processes
+autostart=true
+autorestart=true

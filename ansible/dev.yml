@@ -1,0 +1,27 @@
+---
+- hosts: dev
+  become: true
+  vars_files:
+    # - vars/secret.yml
+    - vars/main.yml
+
+  environment:
+    FNM_DIR: /home/{{ ansible_user }}/{{ fnm_root_suffix }}
+    PATH: /home/{{ ansible_user }}/{{ fnm_root_suffix }}/node-versions/{{ fnm_nodejs_versions|first }}/installation/bin:{{ ansible_env.PATH }}
+
+  vars:
+    frontend_server_name: go-velo.netlify.app
+    backend_server_name: go-velo-api.devxhub.com
+    certbot_certs:
+      - domains:
+          - go-velo-api.devxhub.com
+  roles:
+    - base
+    # - hurricanehrndz.fnm
+    # - geerlingguy.redis
+    # - geerlingguy.certbot
+    # - geerlingguy.postgresql
+    - { role: ansistrano.deploy, become: false }
+    - nginx
+    - backend
+    # - frontend
